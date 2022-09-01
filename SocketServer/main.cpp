@@ -82,19 +82,17 @@ int main(int argc,char * argv[])
 	//关闭套接字
 	closesocket(clientSock);
 #endif
-	XTcp server;
-	server.CreateSocket();
-	server.Bind(8080);
+	XTcp server(8080);
 
 	//循环接受连接
-	for (;;)
-	{
-		XTcp clientConnect = server.Accept();
-		TcpThread* th = new TcpThread(clientConnect);
-		std::thread sth(&TcpThread::TcpHandlerClient, th); // 用th这个对象的TcpHandlerClient这个函数
-		sth.detach();
-	}
-	server.Close();
+	//for (;;)
+	//{
+	//	XTcp clientConnect = server.Accept();
+	//	TcpThread* th = new TcpThread(clientConnect);
+	//	std::thread sth(&TcpThread::TcpHandlerClient, th); // 用th这个对象的TcpHandlerClient这个函数
+	//	sth.detach();
+	//}
+	//server.Close();
 	std::cin.get();
 	return 0;
 }
