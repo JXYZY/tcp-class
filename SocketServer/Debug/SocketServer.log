@@ -1,0 +1,22 @@
+﻿生成启动时间为 2022/9/1 14:32:59。
+     1>项目“E:\socket\SocketServer\SocketServer\SocketServer.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\IDES\vs2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt TcpThread.cpp XTcp.cpp main.cpp
+         XTcp.cpp
+     1>e:\socket\socketserver\socketserver\xtcp.cpp(69): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+         正在生成代码...
+         正在编译...
+         main.cpp
+         TcpThread.cpp
+         正在生成代码...
+       Link:
+         D:\IDES\vs2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\socket\SocketServer\..\Debug\SocketServer.exe" /INCREMENTAL /NOLOGO ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"E:\socket\SocketServer\..\Debug\SocketServer.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\socket\SocketServer\..\Debug\SocketServer.lib" /MACHINE:X86 Debug\main.obj
+         Debug\TcpThread.obj
+         Debug\XTcp.obj
+         SocketServer.vcxproj -> E:\socket\SocketServer\..\Debug\SocketServer.exe
+     1>已完成生成项目“E:\socket\SocketServer\SocketServer\SocketServer.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:01.78
