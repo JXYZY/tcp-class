@@ -1,12 +1,14 @@
 #pragma once
 #include "XTcp.h"
+
 class TcpThread
 {
 public:
-	TcpThread(XTcp clientXTcp);
+	TcpThread(XTcp clientXTcp,XTcp* server);
 	~TcpThread();
 	void TcpHandlerClient();
 
 private:
-	XTcp clientXTcp;
+	XTcp m_clientXTcp;
+	XTcp* m_serveXTcp;
 };

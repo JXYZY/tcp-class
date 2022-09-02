@@ -35,7 +35,7 @@ XTcp::XTcp(unsigned short port)
 
 void XTcp::NewConnectionHandler()
 {
-	while(1)
+	while(m_flag)
 	{
 		XTcp clientConnect = Accept();
 		if (clientConnect.m_sock == 0)
@@ -43,9 +43,10 @@ void XTcp::NewConnectionHandler()
 			std::cout << "accept 失败！" << std::endl;
 			return;
 		}
-		TcpThread* th = new TcpThread(clientConnect);
+		TcpThread* th = new TcpThread(clientConnect,this);
 		std::thread sth(&TcpThread::TcpHandlerClient, th); // 用th这个对象的TcpHandlerClient这个函数
 		sth.detach();
+		/*std::thread sth();*/
 	}
 	
 }

@@ -15,6 +15,9 @@ public:
 	int Send(const char* buf, int sendsize);
 	void Close();
 
+public:
+	virtual void HandleReceiveData(const char* data) {/*do nothing*/}
+
 private:
 	int CreateSocket();
 	bool Bind(unsigned short port);

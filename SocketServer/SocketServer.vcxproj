@@ -144,11 +144,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="KpControl.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TcpThread.cpp" />
     <ClCompile Include="XTcp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="KpControl.h" />
     <ClInclude Include="TcpThread.h" />
     <ClInclude Include="XTcp.h" />
   </ItemGroup>

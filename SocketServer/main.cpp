@@ -4,7 +4,7 @@
 #include <thread>
 #include "TcpThread.h"
 #include "XTcp.h"
-
+#include "KpControl.h"
 
 int main(int argc,char * argv[])
 {
@@ -82,7 +82,8 @@ int main(int argc,char * argv[])
 	//关闭套接字
 	closesocket(clientSock);
 #endif
-	XTcp server(8080);
+	//XTcp server(8080);
+	KpControl server(8080);
 
 	//循环接受连接
 	//for (;;)
