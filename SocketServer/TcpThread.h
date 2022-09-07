@@ -1,6 +1,7 @@
 #pragma once
 #include "XTcp.h"
 
+
 class TcpThread
 {
 public:

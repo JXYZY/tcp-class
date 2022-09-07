@@ -1,18 +1,28 @@
-﻿生成启动时间为 2022/9/2 11:20:57。
-     1>项目“E:\socket\SocketServer\SocketServer\SocketServer.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2022/9/7 15:54:00。
+     1>项目“E:\socket\tcp-class\SocketServer\SocketServer.vcxproj”在节点 2 上(Rebuild 个目标)。
      1>ClCompile:
-         D:\IDES\vs2015\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt KpControl.cpp main.cpp
+         D:\IDES\vs2015\VC\bin\CL.exe /c /ID:\IDES\QT_5.12.0\5.12.0\msvc2015_64\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt KpControl.cpp main.cpp TcpThread.cpp XTcp.cpp
+         XTcp.cpp
+     1>e:\socket\tcp-class\socketserver\xtcp.cpp(129): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+         c:\program files (x86)\windows kits\10\include\10.0.10150.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+         TcpThread.cpp
          main.cpp
          KpControl.cpp
          正在生成代码...
        Link:
-         D:\IDES\vs2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\socket\SocketServer\..\Debug\SocketServer.exe" /INCREMENTAL /NOLOGO ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"E:\socket\SocketServer\..\Debug\SocketServer.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\socket\SocketServer\..\Debug\SocketServer.lib" /MACHINE:X86 Debug\KpControl.obj
+         D:\IDES\vs2015\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\socket\tcp-class\..\Debug\SocketServer.exe" /INCREMENTAL /NOLOGO /LIBPATH:D:\IDES\QT_5.12.0\5.12.0\msvc2015_64\lib ws2_32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Qt5Core.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"E:\socket\tcp-class\..\Debug\SocketServer.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\socket\tcp-class\..\Debug\SocketServer.lib" /MACHINE:X86 Debug\KpControl.obj
          Debug\main.obj
          Debug\TcpThread.obj
          Debug\XTcp.obj
-         SocketServer.vcxproj -> E:\socket\SocketServer\..\Debug\SocketServer.exe
-     1>已完成生成项目“E:\socket\SocketServer\SocketServer\SocketServer.vcxproj”(Build 个目标)的操作。
+     1>KpControl.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) public: char const * __thiscall QByteArray::data(void)const " (__imp_?data@QByteArray@@QBEPBDXZ)，该符号在函数 "protected: virtual void __thiscall KpControl::HandleReceiveData(class QByteArray const &)" (?HandleReceiveData@KpControl@@MAEXABVQByteArray@@@Z) 中被引用
+     1>XTcp.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) public: __thiscall QByteArray::QByteArray(void)" (__imp_??0QByteArray@@QAE@XZ)，该符号在函数 "public: void __thiscall XTcp::HandlerReceiveDataChar(char *)" (?HandlerReceiveDataChar@XTcp@@QAEXPAD@Z) 中被引用
+     1>XTcp.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) public: __thiscall QByteArray::~QByteArray(void)" (__imp_??1QByteArray@@QAE@XZ)，该符号在函数 "public: void __thiscall XTcp::HandlerReceiveDataChar(char *)" (?HandlerReceiveDataChar@XTcp@@QAEXPAD@Z) 中被引用
+     1>XTcp.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) public: void __thiscall QByteArray::resize(int)" (__imp_?resize@QByteArray@@QAEXH@Z)，该符号在函数 "public: void __thiscall XTcp::HandlerReceiveDataChar(char *)" (?HandlerReceiveDataChar@XTcp@@QAEXPAD@Z) 中被引用
+     1>XTcp.obj : error LNK2019: 无法解析的外部符号 "__declspec(dllimport) public: char * __thiscall QByteArray::data(void)" (__imp_?data@QByteArray@@QAEPADXZ)，该符号在函数 "public: void __thiscall XTcp::HandlerReceiveDataChar(char *)" (?HandlerReceiveDataChar@XTcp@@QAEXPAD@Z) 中被引用
+     1>D:\IDES\QT_5.12.0\5.12.0\msvc2015_64\lib\Qt5Core.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“X86”冲突
+     1>E:\socket\tcp-class\..\Debug\SocketServer.exe : fatal error LNK1120: 5 个无法解析的外部命令
+     1>已完成生成项目“E:\socket\tcp-class\SocketServer\SocketServer.vcxproj”(Rebuild 个目标)的操作 - 失败。
 
-已成功生成。
+生成失败。
 
-已用时间 00:00:01.04
+已用时间 00:00:02.67

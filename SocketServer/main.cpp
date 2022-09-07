@@ -8,6 +8,7 @@
 
 int main(int argc,char * argv[])
 {
+	std::cout << "main thread id:" << std::this_thread::get_id() << std::endl;
 #if 0
 	//¼ÓÔØsocket¶¯Ì¬¿â£¬ÉèÖÃlib,ws2_32.lib
 	WSADATA ws;

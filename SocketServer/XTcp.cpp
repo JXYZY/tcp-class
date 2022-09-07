@@ -3,6 +3,7 @@
 #include <windows.h>
 #include<iostream>
 #include"TcpThread.h"
+
 bool XTcp::first = true;
 XTcp::XTcp()
 {
@@ -35,6 +36,7 @@ XTcp::XTcp(unsigned short port)
 
 void XTcp::NewConnectionHandler()
 {
+	std::cout << "connect thread id:" << std::this_thread::get_id() << std::endl;
 	while(m_flag)
 	{
 		XTcp clientConnect = Accept();
@@ -151,7 +153,9 @@ int XTcp::Send(const char* buf, int sendsize)
 	int sendedSize = 0;
 	for (;;)
 	{
-		int sendLen = send(m_sock, buf, sendsize - sendedSize, 0);
+		//这里用accept返回的文件描述符
+		int sendLen = send(m_clientTempSocketToServerUse, buf, sendsize - sendedSize, 0);
+		//int sendLen = send(m_sock, buf, sendsize - sendedSize, 0);
 		if (sendLen<=0)
 			break;
 		sendedSize += sendLen;
@@ -177,5 +181,14 @@ bool XTcp::Connect(const char* ip, unsigned short port)
 	}
 	std::cout << "connect [" << ip << "]" << "[" << port << "] success!" << std::endl;
 	return true;
+}
+
+void XTcp::HandlerReceiveDataChar(char* data)
+{
+	std::cout << "DataChar thread id:" << std::this_thread::get_id() << std::endl;
+	QByteArray array;
+	array.resize(strlen(data)+1);//重置数据大小
+	memcpy(array.data(), data, strlen(data)+1);//copy数据
+	HandleReceiveData(array);
 }
 
