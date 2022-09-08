@@ -84,7 +84,7 @@ int main(int argc,char * argv[])
 	closesocket(clientSock);
 #endif
 	//XTcp server(8080);
-	KpControl server(8080);
+	KpControl* server = new KpControl(8080);
 
 	//循环接受连接
 	//for (;;)
@@ -95,6 +95,8 @@ int main(int argc,char * argv[])
 	//	sth.detach();
 	//}
 	//server.Close();
+	std::cin.get();
+	delete server;
 	std::cin.get();
 	return 0;
 }

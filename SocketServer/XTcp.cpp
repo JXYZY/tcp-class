@@ -42,10 +42,10 @@ void XTcp::NewConnectionHandler()
 	while(m_flag)
 	{
 		int clientSock = Accept();
-		if (clientSock <0)
+		if (clientSock <0 || clientSock == INVALID_SOCKET)
 		{
 			std::cout << "accept 失败！" << std::endl;
-			continue;
+			return;
 		}
 		else
 		{
@@ -78,8 +78,15 @@ XTcp::XTcp(char* ip, unsigned short port)
 
 XTcp::~XTcp()
 {
-	if (m_connectManageThread)
-		delete m_connectManageThread;
+	//关闭线程
+	shutdown(m_sock, 2); //关闭读和写
+	closesocket(m_sock);
+
+	if (m_connectManageThread->joinable())
+	{
+		m_connectManageThread->join();
+	}
+	delete m_connectManageThread;
 	std::cout << "调用析构函数" << std::endl;
 	
 }
