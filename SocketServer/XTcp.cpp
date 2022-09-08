@@ -3,7 +3,8 @@
 #include <windows.h>
 #include<iostream>
 #include"TcpThread.h"
-
+#include"ThreadPool.h"
+#include"SocketTask.h"
 bool XTcp::first = true;
 XTcp::XTcp()
 {
@@ -36,19 +37,32 @@ XTcp::XTcp(unsigned short port)
 
 void XTcp::NewConnectionHandler()
 {
+	ThreadPool pool(5);//包含10个线程的线程池
 	std::cout << "connect thread id:" << std::this_thread::get_id() << std::endl;
 	while(m_flag)
 	{
-		XTcp clientConnect = Accept();
-		if (clientConnect.m_sock == 0)
+		//XTcp clientConnect = Accept();
+		//if (clientConnect.m_sock == 0)
+		//{
+		//	std::cout << "accept 失败！" << std::endl;
+		//	return;
+		//}
+		//TcpThread* th = new TcpThread(clientConnect,this);
+		//std::thread sth(&TcpThread::TcpHandlerClient, th); // 用th这个对象的TcpHandlerClient这个函数
+		//sth.detach();
+		/*std::thread sth();*/
+		int clientSock = Accept();
+		if (clientSock <0)
 		{
 			std::cout << "accept 失败！" << std::endl;
-			return;
+			continue;
 		}
-		TcpThread* th = new TcpThread(clientConnect,this);
-		std::thread sth(&TcpThread::TcpHandlerClient, th); // 用th这个对象的TcpHandlerClient这个函数
-		sth.detach();
-		/*std::thread sth();*/
+		else
+		{
+			SocketTask* task = new SocketTask("SocketCommunicate",this);
+			task->SetSocketFd(clientSock);
+			pool.AddTask(task);
+		}
 	}
 	
 }
@@ -104,11 +118,19 @@ bool XTcp::Bind(unsigned short port)
 	std::cout << "bind port " << saddr.sin_port << "success!" << std::endl;
 
 	//监听
-	int ret = listen(m_sock, 10);
+	int ret = listen(m_sock, 5);
 	std::cout << "ret:" << ret << std::endl;
 	return true;
 }
-
+int XTcp::Accept() 
+{
+	//accept 读取接受连接信息
+	sockaddr_in clientSaddr; // 存储客户端信息
+	int len = sizeof(sockaddr_in);
+	int clientSock = accept(m_sock, (sockaddr*)&clientSaddr, &len);
+	return clientSock;
+}
+#if 0
 XTcp XTcp::Accept()
 {
 	XTcp tcp;
@@ -133,6 +155,7 @@ XTcp XTcp::Accept()
 	//用户可以根据tcp.sock判断这次的
 	return tcp;
 }
+#endif
 
 void XTcp::Close()
 {
@@ -150,6 +173,7 @@ int XTcp::Recv(char* buf, int bufsize)
 
 int XTcp::Send(const char* buf, int sendsize)
 {
+	std::cout << "Send thread id:" << std::this_thread::get_id() << std::endl;
 	int sendedSize = 0;
 	for (;;)
 	{

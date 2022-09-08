@@ -152,13 +152,18 @@
   <ItemGroup>
     <ClCompile Include="KpControl.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SocketTask.cpp" />
     <ClCompile Include="TcpThread.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="XTcp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KpControl.h" />
     <ClInclude Include="parser.h" />
+    <ClInclude Include="SocketTask.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="TcpThread.h" />
+    <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="XTcp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

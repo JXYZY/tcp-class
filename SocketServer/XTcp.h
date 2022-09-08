@@ -22,7 +22,8 @@ public:
 private:
 	int CreateSocket();
 	bool Bind(unsigned short port);
-	XTcp Accept();
+	//XTcp Accept();
+	int Accept();
 	void NewConnectionHandler();
 	
 private:
