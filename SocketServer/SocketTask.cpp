@@ -1,5 +1,6 @@
 #include"SocketTask.h"
 #include <windows.h>
+#include"ThreadPool.h"
 SocketTask::SocketTask(const std::string& task_name, XTcp* server)
 	:Task(task_name)
 	, m_serveXTcp(server)
@@ -12,7 +13,7 @@ SocketTask::~SocketTask()
 
 }
 
-void SocketTask::run()
+void SocketTask::run(ThreadPool* threadpool)
 {
 	int socketFd = GetSocketFd();
 	//接受数据
@@ -35,7 +36,7 @@ void SocketTask::run()
 		lck.unlock();
 #endif
 		int recvLen = recv(socketFd, buf, sizeof(buf) - 1, 0);
-		if (recvLen <= 0)
+		if (recvLen <= 0 )
 		{
 			break;
 		}

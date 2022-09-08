@@ -41,16 +41,6 @@ void XTcp::NewConnectionHandler()
 	std::cout << "connect thread id:" << std::this_thread::get_id() << std::endl;
 	while(m_flag)
 	{
-		//XTcp clientConnect = Accept();
-		//if (clientConnect.m_sock == 0)
-		//{
-		//	std::cout << "accept 失败！" << std::endl;
-		//	return;
-		//}
-		//TcpThread* th = new TcpThread(clientConnect,this);
-		//std::thread sth(&TcpThread::TcpHandlerClient, th); // 用th这个对象的TcpHandlerClient这个函数
-		//sth.detach();
-		/*std::thread sth();*/
 		int clientSock = Accept();
 		if (clientSock <0)
 		{
@@ -59,6 +49,12 @@ void XTcp::NewConnectionHandler()
 		}
 		else
 		{
+			//设定收发超时
+			int nNetTimeout = 5000;
+			//发送时限
+			setsockopt(clientSock, SOL_SOCKET, SO_SNDTIMEO, (char *)&nNetTimeout, sizeof(int));
+			//接收时限
+			setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, (char *)&nNetTimeout, sizeof(int));
 			SocketTask* task = new SocketTask("SocketCommunicate",this);
 			task->SetSocketFd(clientSock);
 			pool.AddTask(task);

@@ -3,6 +3,7 @@
 #include<queue>
 #include<thread>
 #include<mutex>
+#include"SocketTask.h"
 class Task;
 class ThreadPool
 {
@@ -25,4 +26,6 @@ private:
 	std::mutex m_threadPoolMutex;
 	std::condition_variable m_conditionVar;
 	bool m_isRun;
+
+	friend void SocketTask::run(ThreadPool* threadpool);
 };

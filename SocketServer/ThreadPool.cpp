@@ -9,7 +9,7 @@ ThreadPool::ThreadPool(int num_thread)
 
 ThreadPool::~ThreadPool()
 {
-
+	StopAllThread();
 }
 
 void ThreadPool::CreateThread()
@@ -46,7 +46,7 @@ void ThreadPool::ThreadFun()
 		Task* task = m_tasks.front();
 		m_tasks.pop_front();
 		lck.unlock();
-		task->run();
+		task->run(this);
 	}
 }
 

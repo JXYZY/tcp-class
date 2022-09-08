@@ -1,18 +1,12 @@
-﻿生成启动时间为 2022/9/8 14:43:39。
+﻿生成启动时间为 2022/9/8 18:11:33。
      1>项目“E:\socket\tcp-class\SocketServer\SocketServer.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\IDES\vs2015\VC\bin\x86_amd64\CL.exe /c /ID:\IDES\QT_5.12.0\5.12.0\msvc2015_64\include /ZI /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt SocketTask.cpp TcpThread.cpp ThreadPool.cpp XTcp.cpp main.cpp
+         D:\IDES\vs2015\VC\bin\x86_amd64\CL.exe /c /ID:\IDES\QT_5.12.0\5.12.0\msvc2015_64\include /ZI /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt SocketTask.cpp ThreadPool.cpp XTcp.cpp
          ThreadPool.cpp
-         TcpThread.cpp
          SocketTask.cpp
          正在生成代码...
-         正在编译...
+         正在跳过...(未检测到相关更改)
          XTcp.cpp
-     1>e:\socket\tcp-class\socketserver\xtcp.cpp(214): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
-         正在生成代码...
-         正在编译...
-         main.cpp
-         正在生成代码...
        Link:
          D:\IDES\vs2015\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\socket\tcp-class\x64\Debug\SocketServer.exe" /INCREMENTAL /NOLOGO /LIBPATH:D:\IDES\QT_5.12.0\5.12.0\msvc2015_64\lib ws2_32.lib Qt5Core.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"E:\socket\tcp-class\x64\Debug\SocketServer.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\socket\tcp-class\x64\Debug\SocketServer.lib" /MACHINE:X64 x64\Debug\KpControl.obj
          x64\Debug\main.obj
@@ -25,4 +19,4 @@
 
 已成功生成。
 
-已用时间 00:00:02.85
+已用时间 00:00:01.62

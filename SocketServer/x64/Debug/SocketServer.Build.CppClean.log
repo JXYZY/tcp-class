@@ -2,7 +2,9 @@ e:\socket\tcp-class\socketserver\x64\debug\vc140.pdb
 e:\socket\tcp-class\socketserver\x64\debug\vc140.idb
 e:\socket\tcp-class\socketserver\x64\debug\kpcontrol.obj
 e:\socket\tcp-class\socketserver\x64\debug\main.obj
+e:\socket\tcp-class\socketserver\x64\debug\sockettask.obj
 e:\socket\tcp-class\socketserver\x64\debug\tcpthread.obj
+e:\socket\tcp-class\socketserver\x64\debug\threadpool.obj
 e:\socket\tcp-class\socketserver\x64\debug\xtcp.obj
 e:\socket\tcp-class\x64\debug\socketserver.pdb
 e:\socket\tcp-class\socketserver\x64\debug\socketserver.tlog\cl.command.1.tlog
