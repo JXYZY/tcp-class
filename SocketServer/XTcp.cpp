@@ -42,9 +42,9 @@ void XTcp::NewConnectionHandler()
 	while(m_flag)
 	{
 		int clientSock = Accept();
-		if (clientSock <0 || clientSock == INVALID_SOCKET)
+		if (clientSock < 0 || clientSock == INVALID_SOCKET)
 		{
-			std::cout << "accept Ê§°Ü£¡" << std::endl;
+			std::cout << "·þÎñ¶Ë¹Ø±Õ" << std::endl;
 			return;
 		}
 		else
