@@ -1,6 +1,7 @@
 #include"SocketTask.h"
 #include <windows.h>
 #include"ThreadPool.h"
+std::mutex mtx;
 SocketTask::SocketTask(const std::string& task_name, XTcp* server)
 	:Task(task_name)
 	, m_serveXTcp(server)
@@ -20,32 +21,20 @@ void SocketTask::run(ThreadPool* threadpool)
 	char buf[1024] = { 0 };
 	for (;;)
 	{
-#if 0
-		int recvLen = m_clientXTcp.Recv(buf, sizeof(buf) - 1); // len:实际收到数据大小
-		std::cout << "strlen receive buf no \0:" << strlen(buf) << std::endl;
-		if (recvLen <= 0)
-		{
-			break;
-		}
-		buf[recvLen] = '\0';
-		std::cout << "sizeof receive buf:" << sizeof(buf) << std::endl;
-		std::cout << "strlen receive buf add \0:" << strlen(buf) << std::endl;
-		lck.lock();
-		m_serveXTcp->m_clientTempSocketToServerUse = m_clientXTcp.m_sock;
-		m_serveXTcp->HandlerReceiveDataChar(buf);
-		lck.unlock();
-#endif
 		int recvLen = recv(socketFd, buf, sizeof(buf) - 1, 0);
 		if (recvLen <= 0 )
 		{
 			break;
 		}
 		buf[recvLen] = '\0';
-		m_serveXTcp->m_clientTempSocketToServerUse = socketFd;
-		m_serveXTcp->HandlerReceiveDataChar(buf);
+		{
+			//枷锁，防止其他线程收到其他客户端的数据之后，对服务器的临时套接字改动，影响当前线程的通信
+			std::lock_guard<std::mutex> lck(mtx);
+			m_serveXTcp->m_clientTempSocketToServerUse = socketFd;
+			m_serveXTcp->HandlerReceiveDataChar(buf);
+		}
 	}
 	//关闭套接字
-	//closesocket(clientSock);
 	closesocket(socketFd);
 	delete this;
 }
