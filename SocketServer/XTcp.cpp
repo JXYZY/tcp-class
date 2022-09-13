@@ -174,14 +174,15 @@ int XTcp::Recv(char* buf, int bufsize)
 	return recv(m_sock,buf,bufsize,0);
 }
 
-int XTcp::Send(const char* buf, int sendsize)
+int XTcp::Send(const int& socketCommunicate,const char* buf, int sendsize)
 {
 	std::cout << "Send thread id:" << std::this_thread::get_id() << std::endl;
 	int sendedSize = 0;
 	for (;;)
 	{
 		//这里用accept返回的文件描述符
-		int sendLen = send(m_clientTempSocketToServerUse, buf, sendsize - sendedSize, 0);
+		//int sendLen = send(m_clientTempSocketToServerUse, buf, sendsize - sendedSize, 0);
+		int sendLen = send(socketCommunicate, buf, sendsize - sendedSize, 0);
 		//int sendLen = send(m_sock, buf, sendsize - sendedSize, 0);
 		if (sendLen<=0)
 			break;
@@ -210,12 +211,12 @@ bool XTcp::Connect(const char* ip, unsigned short port)
 	return true;
 }
 
-void XTcp::HandlerReceiveDataChar(char* data)
+void XTcp::HandlerReceiveDataChar(const int& socketCommunicate,char* data)
 {
 	std::cout << "DataChar thread id:" << std::this_thread::get_id() << std::endl;
 	QByteArray array;
 	array.resize(strlen(data)+1);//重置数据大小
 	memcpy(array.data(), data, strlen(data)+1);//copy数据
-	HandleReceiveData(array);
+	HandleReceiveData(socketCommunicate,array);
 }
 

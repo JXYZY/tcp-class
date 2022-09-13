@@ -27,12 +27,12 @@ void SocketTask::run(ThreadPool* threadpool)
 			break;
 		}
 		buf[recvLen] = '\0';
-		{
-			//枷锁，防止其他线程收到其他客户端的数据之后，对服务器的临时套接字改动，影响当前线程的通信
-			std::lock_guard<std::mutex> lck(mtx);
-			m_serveXTcp->m_clientTempSocketToServerUse = socketFd;
-			m_serveXTcp->HandlerReceiveDataChar(buf);
-		}
+		
+		//枷锁，防止其他线程收到其他客户端的数据之后，对服务器的临时套接字改动，影响当前线程的通信
+		//std::lock_guard<std::mutex> lck(mtx);
+		//m_serveXTcp->m_clientTempSocketToServerUse = socketFd;
+		m_serveXTcp->HandlerReceiveDataChar(socketFd,buf);
+		
 	}
 	//关闭套接字
 	closesocket(socketFd);

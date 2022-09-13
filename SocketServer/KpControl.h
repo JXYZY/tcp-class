@@ -10,5 +10,5 @@ public:
 	void close();
 
 protected:
-	void HandleReceiveData(const QByteArray& data)override;
+	void HandleReceiveData(const int& socketCommunicate,const QByteArray& data)override;
 };
