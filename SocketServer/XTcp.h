@@ -2,6 +2,7 @@
 #include<string>
 #include<thread>
 #include<QtCore/QByteArray>
+#include<list>
 class  XTcp
 {
 public:
@@ -37,4 +38,5 @@ public:
 	char m_ip[16];
 	std::thread* m_connectManageThread = nullptr;
 	bool m_flag;
+	std::list<int> m_socketCommunicateList;
 };

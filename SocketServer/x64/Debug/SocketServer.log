@@ -1,3 +1,19 @@
-﻿  XTcp.cpp
-d:\socketnew\tcp-class\socketserver\xtcp.cpp(218): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
-  SocketServer.vcxproj -> D:\socketNew\tcp-class\..\x64\Debug\SocketServer.exe
+﻿生成启动时间为 2022/9/14 10:48:25。
+     1>项目“E:\socket\tcp-class\SocketServer\SocketServer.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\IDES\vs2015\VC\bin\x86_amd64\CL.exe /c /ID:\IDES\QT_5.12.0\5.12.0\msvc2015_64\include /ZI /nologo /W3 /WX- /Od /D _DEBUG /D _CONSOLE /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"x64\Debug\\" /Fd"x64\Debug\vc140.pdb" /Gd /TP /errorReport:prompt XTcp.cpp
+         XTcp.cpp
+     1>e:\socket\tcp-class\socketserver\xtcp.cpp(196): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+       Link:
+         D:\IDES\vs2015\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\socket\tcp-class\..\x64\Debug\SocketServer.exe" /INCREMENTAL /NOLOGO /LIBPATH:D:\IDES\QT_5.12.0\5.12.0\msvc2015_64\lib ws2_32.lib Qt5Core.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"E:\socket\tcp-class\..\x64\Debug\SocketServer.pdb" /SUBSYSTEM:CONSOLE,"5.02" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\socket\tcp-class\..\x64\Debug\SocketServer.lib" /MACHINE:X64 x64\Debug\KpControl.obj
+         x64\Debug\main.obj
+         x64\Debug\SocketTask.obj
+         x64\Debug\TcpThread.obj
+         x64\Debug\ThreadPool.obj
+         x64\Debug\XTcp.obj
+         SocketServer.vcxproj -> E:\socket\tcp-class\..\x64\Debug\SocketServer.exe
+     1>已完成生成项目“E:\socket\tcp-class\SocketServer\SocketServer.vcxproj”(Build 个目标)的操作。
+
+已成功生成。
+
+已用时间 00:00:00.99

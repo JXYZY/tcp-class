@@ -32,7 +32,6 @@ XTcp::XTcp(unsigned short port)
 	}
 	Bind(port);
 	m_connectManageThread = new std::thread(&XTcp::NewConnectionHandler,this);
-	m_connectManageThread->detach();
 }
 
 void XTcp::NewConnectionHandler()
@@ -45,16 +44,21 @@ void XTcp::NewConnectionHandler()
 		if (clientSock < 0 || clientSock == INVALID_SOCKET)
 		{
 			std::cout << "服务端关闭" << std::endl;
+			for (auto& sockCommun : m_socketCommunicateList)
+			{
+				closesocket(sockCommun);
+			}
 			return;
 		}
 		else
 		{
+			m_socketCommunicateList.push_back(clientSock);
 			//设定收发超时
-			int nNetTimeout = 5000;
+			//int nNetTimeout = 5000;
 			//发送时限
-			setsockopt(clientSock, SOL_SOCKET, SO_SNDTIMEO, (char *)&nNetTimeout, sizeof(int));
+			//setsockopt(clientSock, SOL_SOCKET, SO_SNDTIMEO, (char *)&nNetTimeout, sizeof(int));
 			//接收时限
-			setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, (char *)&nNetTimeout, sizeof(int));
+			//setsockopt(clientSock, SOL_SOCKET, SO_RCVTIMEO, (char *)&nNetTimeout, sizeof(int));
 			SocketTask* task = new SocketTask("SocketCommunicate",this);
 			task->SetSocketFd(clientSock);
 			pool.AddTask(task);
@@ -133,32 +137,6 @@ int XTcp::Accept()
 	int clientSock = accept(m_sock, (sockaddr*)&clientSaddr, &len);
 	return clientSock;
 }
-#if 0
-XTcp XTcp::Accept()
-{
-	XTcp tcp;
-	//accept 读取接受连接信息
-	sockaddr_in clientSaddr; // 存储客户端信息
-	int len = sizeof(sockaddr_in);
-	std::cout << "sockaddr_in len:" << len << std::endl;
-	int clientSock = accept(m_sock, (sockaddr*)&clientSaddr, &len);
-	//printf("%s\n", strerror(errno));
-	perror("error:");
-	std::cout << "accept return:" << clientSock << std::endl;
-	if (clientSock <= 0)
-	{
-		return tcp;
-	}
-	tcp.m_sock = clientSock;
-	//tcp.ip = inet_ntoa(clientSaddr.sin_addr);
-	char* ip = inet_ntoa(clientSaddr.sin_addr);
-	strcpy(tcp.m_ip,ip);
-	tcp.m_port = ntohs(clientSaddr.sin_port);
-	std::cout << "client ip[" << tcp.m_ip << "]" << " " << "port[" << tcp.m_port << "]" << std::endl;
-	//用户可以根据tcp.sock判断这次的
-	return tcp;
-}
-#endif
 
 void XTcp::Close()
 {
